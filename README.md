@@ -64,7 +64,7 @@
    - high: `confidence >= confidence_threshold`;
    - medium: `confidence_medium_floor <= confidence < confidence_threshold`;
    - low: `confidence < confidence_medium_floor`.
-   - defaults: `confidence_threshold = 0.70`, `confidence_medium_floor = 0.40`.
+   - defaults: см. параметры в разделе `6. DECISION LOGIC`.
 
 ### 6. DECISION LOGIC
 1. Если ответ есть в локальных данных — использовать их.
