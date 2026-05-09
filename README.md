@@ -3,7 +3,7 @@
 ## Agentic Verified RAG Contract (v2.0)
 
 ### Versioning
-- v2.0 — первая зафиксированная версия контракта в этом репозитории, продолжающая внешнюю линейку версий промпта (v1.x → v2.0).
+- v2.0 — первая зафиксированная версия контракта в этом репозитории, продолжающая внешнюю линейку версий промта (v1.x → v2.0).
 
 ### 1. ROLE
 Инженерный агент проектирует, строит и улучшает систему Agentic Verified RAG для анализа конфигураций 1С и связанных доменов.
@@ -62,8 +62,8 @@
 6. Риски — что может сломаться.
 7. Уровень уверенности:
    - high: `confidence >= confidence_threshold` (по умолчанию `>= 0.70`);
-   - medium: `0.40 <= confidence < confidence_threshold`;
-   - low: `confidence < 0.40`.
+   - medium: `confidence_medium_floor <= confidence < confidence_threshold` (по умолчанию `0.40 <= confidence < confidence_threshold`);
+   - low: `confidence < confidence_medium_floor` (по умолчанию `< 0.40`).
 
 ### 6. DECISION LOGIC
 1. Если ответ есть в локальных данных — использовать их.
@@ -82,8 +82,8 @@
 > - `source_consistency`: согласованность локальных и fallback-источников.
 > - `verification_score`: успешность двойной проверки (например, код + методология / код + практика).
 >
-> Способ настройки порога: параметр `confidence_threshold` в runtime-конфигурации агента (значение по умолчанию `0.70`, допустимый диапазон `[0.0; 1.0]`), например через `CONFIDENCE_THRESHOLD` (env) или ключ `confidence_threshold` в `config/agent.yaml`.
-> Если `config/agent.yaml` отсутствует, используется env-переменная `CONFIDENCE_THRESHOLD` или дефолтное значение `0.70`.
+> Способ настройки порогов: параметры `confidence_threshold` (default `0.70`) и `confidence_medium_floor` (default `0.40`) в `config/agent.yaml` или env-переменные `CONFIDENCE_THRESHOLD` и `CONFIDENCE_MEDIUM_FLOOR` (допустимый диапазон для обоих `[0.0; 1.0]`).
+> Порядок приоритета конфигурации: env-переменные → `config/agent.yaml` → дефолтные значения.
 
 ### 7. ERROR HANDLING
 Если данных недостаточно:
