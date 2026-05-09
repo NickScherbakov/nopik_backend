@@ -1,0 +1,3 @@
+# Agentic Verified RAG runtime defaults
+confidence_threshold: 0.70
+confidence_medium_floor: 0.40
